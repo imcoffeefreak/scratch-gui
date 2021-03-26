@@ -1,11 +1,11 @@
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import bindAll from 'lodash.bindall';
 import React from 'react';
 
 const MenuBarHOC = function (WrappedComponent) {
     class MenuBarContainer extends React.PureComponent {
-        constructor (props) {
+        constructor(props) {
             super(props);
 
             bindAll(this, [
@@ -13,17 +13,17 @@ const MenuBarHOC = function (WrappedComponent) {
                 'shouldSaveBeforeTransition'
             ]);
         }
-        confirmReadyToReplaceProject (message) {
+        confirmReadyToReplaceProject(message) {
             let readyToReplaceProject = true;
             if (this.props.projectChanged && !this.props.canCreateNew) {
                 readyToReplaceProject = this.props.confirmWithMessage(message);
             }
             return readyToReplaceProject;
         }
-        shouldSaveBeforeTransition () {
+        shouldSaveBeforeTransition() {
             return (this.props.canSave && this.props.projectChanged);
         }
-        render () {
+        render() {
             const {
                 /* eslint-disable no-unused-vars */
                 projectChanged,
